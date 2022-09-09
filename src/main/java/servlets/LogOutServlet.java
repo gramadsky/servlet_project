@@ -1,3 +1,5 @@
+package servlets;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +11,8 @@ import java.io.IOException;
 public class LogOutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().invalidate();
 
+        req.getSession().invalidate();
+        resp.sendRedirect("/login_page.html");
     }
 }
