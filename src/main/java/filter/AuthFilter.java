@@ -1,10 +1,9 @@
 package filter;
 
-import service.SecurityService;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AuthFilter implements Filter {
@@ -14,9 +13,10 @@ public class AuthFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
 
-        SecurityService securityService = new SecurityService();
+        HttpSession session = request.getSession();
+        String login = (String) session.getAttribute("user");
 
-        if (securityService.checkIfUserLogged(request)) {
+        if (login != null) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             HttpServletResponse response = (HttpServletResponse) servletResponse;

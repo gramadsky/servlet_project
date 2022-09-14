@@ -3,21 +3,18 @@ package service;
 import model.User;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SecurityService {
-    List<User> userList = new ArrayList<>();
 
     User user1 = new User("Bob", "12");
     User user2 = new User("Dima", "123");
     User user3 = new User("Mike", "1234");
 
-    public boolean checkIfUserLogged(HttpServletRequest request) {
+    List<User> userList = Arrays.asList(user1, user2, user3);
 
-        userList.add(user1);
-        userList.add(user2);
-        userList.add(user3);
+    public boolean checkIfUserLogged(HttpServletRequest request) {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
